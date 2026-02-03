@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
-* @Route("/crud", name="crud_")
+* @Route("/admin", name="crud_")
 */
 class CRUDController extends AbstractController{
 

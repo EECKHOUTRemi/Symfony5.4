@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
-* @Route("/form", name="form_")
+* @Route("/admin", name="form_")
 */
 class FormController extends AbstractController{
     

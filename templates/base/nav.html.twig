@@ -1,114 +1,128 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<div
-		class="container-fluid">
+{% if app.user %}
+	{% set roles = app.user.roles %}	
 
-		<!-- Brand -->
-		<a class="navbar-brand" href="{{ path('app_home') }}">ApprentissagePHP</a>
-
-		<!-- Mobile toggle -->
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div
-			class="collapse navbar-collapse" id="mainNavbar">
+			class="container-fluid">
 
-			<!-- LEFT NAV -->
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			<!-- Brand -->
+			<a class="navbar-brand" href="{{ path('app_home') }}">ApprentissagePHP</a>
 
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_home') }}">Home</a>
-				</li>
+			<!-- Mobile toggle -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-				<!-- CRUD -->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-						CRUD
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ path('crud_read') }}">Lire Drivers</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('crud_createDriver') }}">Créer Driver</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('crud_updateDriversCar', { driverId: 1 }) }}">Update Voiture</a>
-						</li>
-					</ul>
-				</li>
+			<div
+				class="collapse navbar-collapse" id="mainNavbar">
 
-				<!-- Forms -->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-						Forms
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ path('form_createDriver') }}">Créer Driver</a>
-						</li>
-					</ul>
-				</li>
-
-				<!-- Twig -->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-						Twig
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ path('twig_index') }}">Twig Home</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('twig_loop') }}">Twig Loop</a>
-						</li>
-					</ul>
-				</li>
-
-                <!-- Misc -->
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('requetes_get')}}">GET</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('requetes_post')}}">POST</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('redirection_index')}}">Redirection</a>
-				</li>
-
-			</ul>
-
-			<!-- RIGHT NAV -->
-			<ul class="navbar-nav ms-auto">
-
-				{% if is_granted('ROLE_ADMIN') %}
-					<li class="nav-item">
-						<a class="nav-link text-warning" href="{{ path('app_admin_index') }}">Admin</a>
-					</li>
-				{% endif %}
-
-				{% if app.user %}
-					<li class="nav-item">
-						<span class="navbar-text text-light me-2">
-							{{ app.user.username }}
-						</span>
-					</li>
+				<!-- LEFT NAV -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 					<li class="nav-item">
-						<a class="nav-link text-danger" href="{{ path('app_logout') }}">Logout</a>
+						<a class="nav-link" href="{{ path('app_home') }}">Home</a>
 					</li>
-				{% else %}
+
+
+					<!-- CRUD -->
+					{% if 'ROLE_ADMIN' in roles %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+							CRUD
+						</a>
+						<ul class="dropdown-menu">
+					{% endif %}
+							<li>
+								<a class={{ ('ROLE_ADMIN' in roles) ? "dropdown-item" : "nav-link" }} href="{{ path('crud_read') }}">Lire Drivers</a>
+							</li>
+					{% if 'ROLE_ADMIN' in roles %}
+								<li>
+									<a class="dropdown-item" href="{{ path('crud_createDriver') }}">Créer Driver</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('crud_updateDriversCar', { driverId: 1 }) }}">Update Voiture</a>
+								</li>
+						</ul>
+					</li>
+					{% endif %}
+
+					{% if 'ROLE_ADMIN' in roles %}
+					<!-- Forms -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+							Forms
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ path('form_createDriver') }}">Créer Driver</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('form_updateDriversCar', { driverId: 1 }) }}">Modifier Driver</a>
+							</li>
+						</ul>
+					</li>
+					{% endif %}
+
+					<!-- Twig -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+							Twig
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ path('twig_index') }}">Twig Home</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('twig_loop') }}">Twig Loop</a>
+							</li>
+						</ul>
+					</li>
+
+					<!-- Misc -->
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+						<a class="nav-link" href="{{ path('requetes_get')}}">GET</a>
 					</li>
-
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_register') }}">Register</a>
+						<a class="nav-link" href="{{ path('requetes_post')}}">POST</a>
 					</li>
-				{% endif %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('redirection_index')}}">Redirection</a>
+					</li>
 
-			</ul>
+				</ul>
 
+				<!-- RIGHT NAV -->
+				<ul class="navbar-nav ms-auto">
+
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="nav-link text-warning" href="{{ path('app_admin_index') }}">Admin</a>
+						</li>
+					{% endif %}
+
+					{% if app.user %}
+						<li class="nav-item">
+							<span class="navbar-text text-light me-2">
+								{{ app.user.username }}
+							</span>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link text-danger" href="{{ path('app_logout') }}">Logout</a>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_register') }}">Register</a>
+						</li>
+					{% endif %}
+
+				</ul>
+
+			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
+{% endif %}
