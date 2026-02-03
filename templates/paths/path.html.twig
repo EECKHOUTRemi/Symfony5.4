@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Accedez à l'<a href="{{ path('twig_index') }}">index</a></p>
+    {# ↓ Les variables suivantes sont modifiables dans config/packages/twig.yaml ↓ #}
+    <p>Je suis {{ developer ~ " , mon addresse mail est : " ~ contact }}</p>
+</body>
+</html>

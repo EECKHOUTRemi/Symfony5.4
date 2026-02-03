@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AppController!{% endblock %}
+
+{% block body %}
+	{{ include('templatesParts/_header.html.twig') }}
+
+	<h1>Ceci est le contenu du site ↓</h1>
+
+	{{ include('templatesParts/_body.html.twig') }}
+
+	<h1>Ceci est le contenu du site ↑</h1>
+
+	{{ include('templatesParts/_footer.html.twig') }}
+{% endblock %}

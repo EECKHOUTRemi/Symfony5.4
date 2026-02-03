@@ -1,0 +1,6 @@
+{% set list = [1,23,4,5,6,9,8,7,5,565454,684] %}
+{% for number in list  %}
+    <p>{{ number ~ " est le " ~ loop.index }}e élément de la liste, à l'élément n° {{ loop.index0 }}</p>
+{% else %}
+    <p>Pas d'élements dans la liste...</p>
+{% endfor %}

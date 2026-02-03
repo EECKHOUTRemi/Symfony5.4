@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ form_start(form, {'attr': {'class': 'needs-validation mx-auto m-3 p-3'}}) }}
+
+    {{ form_row(form.lastname, { 'label': 'Label2: Votre nom de famille' }) }}
+    {{ form_row(form.firstname, { 'attr': { 'placeholder': 'Ex : Rémi' }}) }}
+    {{ form_row(form.age, { 'attr': { 'value': 21 }}) }}
+    {{ form_row(form.email, {'help': 'Cet email sera utilisé en tant qu\'identifiant.', 'errors': 'attention' }) }}
+
+{{ form_end(form) }}
+
+{% endblock %}

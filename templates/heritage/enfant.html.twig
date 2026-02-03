@@ -1,0 +1,9 @@
+{% extends 'heritage/parent.html.twig' %}
+
+{% set test = "Salut" %}
+
+{% block sidebar %}
+    {{ test }}
+	{{ parent() }} {# Récupère "<p>Contenu du parent</p>" #}
+	<p>Contenu de l'enfant</p>
+{% endblock %}
