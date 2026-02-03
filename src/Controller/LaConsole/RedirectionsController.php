@@ -12,6 +12,6 @@ class RedirectionsController extends AbstractController{
      * @Route("/redirection", name="redirection_index")
      */
     public function reduirection_index() : RedirectResponse {
-        return $this->redirectToRoute('test');
+        return $this->redirectToRoute('test_index');
     }
 }
