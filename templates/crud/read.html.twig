@@ -3,6 +3,10 @@
 {% block body %}
     <h1>Les voitures</h1>
     {% for driver in drivers %}
-        <p>{{ driver.lastname ~ ' ' ~ driver.firstname ~ ' : ' ~ driver.car.brand ~ ' ' ~ driver.car.model }}</p>
+        {% if driver.car is null %}
+            <p>{{ driver.lastname ~ ' ' ~ driver.firstname ~ ' : pas de voiture.'}}</p>
+        {% else %}
+            <p>{{ driver.lastname ~ ' ' ~ driver.firstname ~ ' : ' ~ driver.car.getBrand ~ ' ' ~ driver.car.getModel() }}</p>
+        {% endif %}
     {% endfor %}
 {% endblock %}
