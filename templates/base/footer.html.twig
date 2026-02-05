@@ -1,28 +1,13 @@
 {% if app.user %}
-	<footer class="bg-dark text-light mt-5 pt-4">
+	<footer class="bg-dark text-light mt-auto pt-4 ">
 		<div class="container">
 			<div class="row">
 
-				<div class="col-md-4 mb-3">
+				<div class="col-md-4 mb-3 ">
 					<h5 class="fw-bold">{{ app_name|default('ApprentissagePHP') }}</h5>
-					<p class="text-muted small">
+					<p class="small">
 						Projet Symfony — CRUD, Twig, Doctrine.
 					</p>
-				</div>
-
-				<div class="col-md-4 mb-3">
-					<h6>Navigation</h6>
-					<ul class="list-unstyled">
-						<li>
-							<a href="{{ path('app_home') }}" class="text-light text-decoration-none">Home</a>
-						</li>
-						<li>
-							<a href="{{ path('crud_read') }}" class="text-light text-decoration-none">CRUD</a>
-						</li>
-						<li>
-							<a href="{{ path('form_createDriver') }}" class="text-light text-decoration-none">Forms</a>
-						</li>
-					</ul>
 				</div>
 
 				<div class="col-md-4 mb-3">

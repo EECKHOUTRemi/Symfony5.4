@@ -26,7 +26,11 @@ class PostsAndGetsController{
      */
     public function getArticle(Request $request): Response {
         $tag = $request->query->get("tag");
+
+        if (!$tag) {
+            return new Response("Entrez un paramètre 'tag' pour voir quelque chose ici !");
+        }
     
-        return new Response("$tag");
+        return new Response($tag);
     }
 }
