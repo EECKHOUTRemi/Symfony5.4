@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container mt-4">
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Salary</th>
+                    <th>Office</th>
+                    <th>Position</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('js/datatablesInstance.js') }}"></script>
+{% endblock %}
