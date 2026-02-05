@@ -88,6 +88,24 @@
 						</ul>
 					</li>
 
+					<!-- DataTables -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+							DataTables
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ path('datatables_array') }}">Array</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('datatables_object') }}">Object</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('datatables_instance') }}">Instance</a>
+							</li>
+						</ul>
+					</li>
+					
 					<!-- Misc -->
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('requetes_get')}}">GET</a>
