@@ -5,15 +5,16 @@ namespace App\Controller\LaConsole;
 use dump;
 use App\Entity\Cars;
 use App\Entity\Driver;
+use App\Handler\Car\DeleteCarHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Handler\Driver\ReadDriverHandler;
 use App\Handler\Driver\CreateDriverHandler;
-use App\Handler\Driver\UpdateDriversLastnameHandler;
-use App\Handler\Driver\UpdateDriversCarHandler;
 use App\Handler\Driver\DeleteDriverHandler;
-use App\Handler\Car\DeleteCarHandler;
 use Symfony\Component\HttpFoundation\Response;
+use App\Handler\Driver\UpdateDriversCarHandler;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Handler\Driver\UpdateDriversLastnameHandler;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -57,6 +58,7 @@ class CRUDController extends AbstractController{
 
     /**
      * @Route("/read/{lastname?}", name="read")
+     * @IsGranted("ROLE_USER")
      */
     public function read(?string $lastname = null): Response{
         $drivers = $this->readDriverHandler->handle($lastname ?? null);
@@ -68,6 +70,7 @@ class CRUDController extends AbstractController{
 
     /**
     * @Route("/createDriver", name="createDriver")
+    * @IsGranted("ROLE_ADMIN")
     */
     public function create() {
         $result = $this->createDriverHandler->handle("Peugeot", "208 II", 100, "BOULONGNE", "Alain", 40, "a.boulongne@amiens-metropole.com");
@@ -80,6 +83,7 @@ class CRUDController extends AbstractController{
 
     /**
     * @Route("/updateDriversLastname/{driverId}", name="updateDriversLastname")
+    * @IsGranted("ROLE_ADMIN")
     */
     public function update(int $driverId) {
         $driver = $this->updateDriversLastname->handle($driverId);
@@ -89,6 +93,7 @@ class CRUDController extends AbstractController{
 
     /**
     * @Route("/updateDriversCar/{driverId}", name="updateDriversCar")
+    * @IsGranted("ROLE_ADMIN")
     */
     public function updateCar(int $driverId) : Response {
         $result = $this->updateDriversCarHandler->handle("Peugeot", "107", 68, $driverId);
@@ -101,6 +106,7 @@ class CRUDController extends AbstractController{
 
     /**
     * @Route("/deleteDriver/{driverId}", name="deleteDriver")
+    * @IsGranted("ROLE_ADMIN")
     */
     public function deleteDriver(int $driverId) : Response {
         $driver = $this->DeleteDriverHandler->handle($driverId);
@@ -110,6 +116,7 @@ class CRUDController extends AbstractController{
 
     /**
     * @Route("/deleteCar/{carId}", name="deleteCar")
+    * @IsGranted("ROLE_ADMIN")
     */
     public function deleteCar(int $carId) : Response {
         $car = $this->deleteCarHandler->handle($carId);

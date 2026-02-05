@@ -4,9 +4,11 @@ namespace App\Controller\LaConsole;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/exo2", name="exo2_")
+ * @IsGranted("ROLE_USER")
  */
 class Exo2Controller {
 
