@@ -20,16 +20,30 @@ class DataTablesController extends AbstractController{
     }
     
     /**
-    * @Route("/object", name="object")
-    */
+     * @Route("/object", name="object")
+     */
     public function object(){
         return $this->render("datatables/object.html.twig");
     }
     
     /**
-    * @Route("/instance", name="instance")
-    */
+     * @Route("/instance", name="instance")
+     */
     public function instance(){
         return $this->render("datatables/instance.html.twig");
+    }
+    
+    /**
+    * @Route("/bdd", name="bdd")
+    */
+    public function bdd(){
+        return $this->render("datatables/bdd.html.twig");
+    }
+    
+    /**
+    * @Route("/bdd/data", name="bdd_data")
+    */
+    public function bddData(){
+        // TODO : appeler readDriverHandler, utiliser AJAX pour l'envoyer dans jd/datatables/bdd/datatablesBdd.js, envoyer les données dans bdd.html.twig
     }
 }
