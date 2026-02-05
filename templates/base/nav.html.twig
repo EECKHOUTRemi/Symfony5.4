@@ -6,7 +6,7 @@
 			class="container-fluid">
 
 			<!-- Brand -->
-			<a class="navbar-brand" href="{{ path('app_home') }}">ApprentissagePHP</a>
+			<a class="navbar-brand" href="{{ path( 'ROLE_ADMIN' in roles ? 'app_admin_index' : 'app_home') }}">ApprentissagePHP</a>
 
 			<!-- Mobile toggle -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
@@ -20,7 +20,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_home') }}">Home</a>
+						<a class="nav-link" href="{{ path( 'ROLE_ADMIN' in roles ? 'app_admin_index' : 'app_home') }}">Home</a>
 					</li>
 
 
@@ -35,13 +35,25 @@
 							<li>
 								<a class={{ ('ROLE_ADMIN' in roles) ? "dropdown-item" : "nav-link" }} href="{{ path('crud_read') }}">Lire Drivers</a>
 							</li>
+							<li>
+								<a class={{ ('ROLE_ADMIN' in roles) ? "dropdown-item" : "nav-link" }} href="{{ path('crud_read', { lastname: 'EECKHOUT' }) }}">Lire Driver(s) EECKHOUT</a>
+							</li>
 					{% if 'ROLE_ADMIN' in roles %}
-								<li>
-									<a class="dropdown-item" href="{{ path('crud_createDriver') }}">Créer Driver</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{ path('crud_updateDriversCar', { driverId: 1 }) }}">Update Voiture</a>
-								</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('crud_createDriver') }}">Créer Driver</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('crud_updateDriversLastname', { driverId: 1 }) }}">Update Driver's 1 Lastname</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('crud_updateDriversCar', { driverId: 1 }) }}">Update Driver's 1 Voiture</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('crud_deleteDriver', { driverId: 1 }) }}">Delete Driver 1</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('crud_deleteCar', { carId: 1 }) }}">Delete Car 1</a>
+							</li>
 						</ul>
 					</li>
 					{% endif %}
