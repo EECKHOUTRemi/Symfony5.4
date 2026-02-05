@@ -2,10 +2,11 @@
 
 namespace App\Handler\Driver;
 
+use App\Entity\Cars;
 use App\Entity\Driver;
 use Doctrine\ORM\EntityManagerInterface;
 
-class UpdateDriversLastnameHandler{
+class UpdateDriversCarHandler{
 
     /** @var EntityManagerInterface */
     private $em;
@@ -14,13 +15,20 @@ class UpdateDriversLastnameHandler{
         $this->em = $em;
     }
 
-    public function handle(?int $driverId, ?string $newLastname){
+    public function handle(?string $brand, ?string $model, ?int $horsepower, ?int $driverId){
         $repo = $this->em->getRepository(Driver::class);
         $driver = $repo->find($driverId);
+        
+        $car = new Cars;
+        $car->setBrand($brand);
+        $car->setModel($model);
+        $car->setHorsepower($horsepower);
+        $car->setDriver($driver);
 
-        $driver->setLastname($newLastname);
+        $driver->setCar($car);
+
         $this->em->flush();
 
-        return $driver;
+        return [$driver, $car];
     }
 }
