@@ -25,18 +25,16 @@
 
 
 					<!-- CRUD -->
-					{% if 'ROLE_ADMIN' in roles %}
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-							CRUD
+							{{ is_granted('ROLE_ADMIN') ? "CRUD" : "Lire Driver" }}
 						</a>
 						<ul class="dropdown-menu">
-					{% endif %}
 							<li>
-								<a class={{ ('ROLE_ADMIN' in roles) ? "dropdown-item" : "nav-link" }} href="{{ path('crud_read') }}">Lire Drivers</a>
+								<a class="dropdown-item" href="{{ path('crud_read') }}">{{ is_granted('ROLE_ADMIN') ? "Lire Drivers" : "Tous" }}</a>
 							</li>
 							<li>
-								<a class={{ ('ROLE_ADMIN' in roles) ? "dropdown-item" : "nav-link" }} href="{{ path('crud_read', { lastname: 'EECKHOUT' }) }}">Lire Driver(s) EECKHOUT</a>
+								<a class="dropdown-item" href="{{ path('crud_read', { lastname: 'EECKHOUT' }) }}">{{ is_granted('ROLE_ADMIN') ? "Lire Driver(s) EECKHOUT" : "EECKHOUT" }}</a>
 							</li>
 					{% if 'ROLE_ADMIN' in roles %}
 							<li>
@@ -54,9 +52,9 @@
 							<li>
 								<a class="dropdown-item" href="{{ path('crud_deleteCar', { carId: 1 }) }}">Delete Car 1</a>
 							</li>
+					{% endif %}
 						</ul>
 					</li>
-					{% endif %}
 
 					{% if 'ROLE_ADMIN' in roles %}
 					<!-- Forms -->
@@ -105,12 +103,6 @@
 
 				<!-- RIGHT NAV -->
 				<ul class="navbar-nav ms-auto">
-
-					{% if is_granted('ROLE_ADMIN') %}
-						<li class="nav-item">
-							<a class="nav-link text-warning" href="{{ path('app_admin_index') }}">Admin</a>
-						</li>
-					{% endif %}
 
 					{% if app.user %}
 						<li class="nav-item">
