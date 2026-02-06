@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Redirection en cours...</h1>
+        <p>Vous allez être redirigé vers {{ redirect_url }} dans <span id="countdown">{{ delay }}</span> secondes.</p>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        let seconds = {{ delay }};
+        const countdownEl = document.querySelector('#countdown');
+        
+        const interval = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(interval);
+            }
+        }, 1000);
+
+        setTimeout(() => {
+            window.location.href = "{{ redirect_url }}";
+        }, {{ delay * 1000 }});
+    </script>
+{% endblock %}
