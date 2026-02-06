@@ -1,4 +1,5 @@
 # Symfony5.4
 
-`npm install` +
-`composer install`
+`git clone` dans `wamp/www`
+
+`npm install` + `composer install`
