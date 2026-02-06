@@ -34,6 +34,10 @@ security:
                 username_parameter: username
                 password_parameter: password
                 success_handler: App\Security\LoginSuccessHandler
+            
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
 
             logout:
                 path: app_logout
