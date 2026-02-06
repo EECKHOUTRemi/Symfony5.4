@@ -36,23 +36,23 @@
 							<li>
 								<a class="dropdown-item" href="{{ path('crud_read', { lastname: 'EECKHOUT' }) }}">{{ is_granted('ROLE_ADMIN') ? "Lire Driver(s) EECKHOUT" : "EECKHOUT" }}</a>
 							</li>
-					{% if 'ROLE_ADMIN' in roles %}
-							<li>
-								<a class="dropdown-item" href="{{ path('crud_createDriver') }}">Créer Driver</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('crud_updateDriversLastname', { driverId: 1 }) }}">Update Driver's 1 Lastname</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('crud_updateDriversCar', { driverId: 1 }) }}">Update Driver's 1 Voiture</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('crud_deleteDriver', { driverId: 1 }) }}">Delete Driver 1</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('crud_deleteCar', { carId: 1 }) }}">Delete Car 1</a>
-							</li>
-					{% endif %}
+							{% if 'ROLE_ADMIN' in roles %}
+								<li>
+									<a class="dropdown-item" href="{{ path('crud_createDriver') }}">Créer Driver</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('crud_updateDriversLastname', { driverId: 1 }) }}">Update Driver's 1 Lastname</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('crud_updateDriversCar', { driverId: 1 }) }}">Update Driver's 1 Voiture</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('crud_deleteDriver', { driverId: 1 }) }}">Delete Driver 1</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('crud_deleteCar', { carId: 1 }) }}">Delete Car 1</a>
+								</li>
+							{% endif %}
 						</ul>
 					</li>
 
@@ -80,10 +80,16 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a class="dropdown-item" href="{{ path('twig_index') }}">Twig Home</a>
+								<a class="dropdown-item" href="{{ path('twig_index') }}">Home</a>
 							</li>
 							<li>
-								<a class="dropdown-item" href="{{ path('twig_loop') }}">Twig Loop</a>
+								<a class="dropdown-item" href="{{ path('twig_path') }}">Path</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('twig_heritage') }}">Heritage</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('twig_loop') }}">Loop</a>
 							</li>
 						</ul>
 					</li>
