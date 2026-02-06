@@ -2,15 +2,31 @@
 
 {% block body %}
     <div class="container mt-4">
-        <table id="example" class="display">
+        <table id="driver" class="display">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
                     <th>Age</th>
                     <th>Mail</th>
                     <th>Marque de la voiture</th>
                     <th>Modèle de la voiture</th>
                     <th>Puissance de la voiture</th>
+                </tr>
+            </thead>
+        </table>
+        <table id="car" class="display">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Marque de la voiture</th>
+                    <th>Modèle de la voiture</th>
+                    <th>Puissance de la voiture</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Age</th>
+                    <th>Mail</th>
                 </tr>
             </thead>
         </table>
@@ -20,10 +36,16 @@
 {% block scripts %}
     <script>
         $(document).ready(function() {
-            $('#example').DataTable({
+            $('#driver').DataTable({
                 ajax: {
-                    url: '{{ path('datatables_bdd_data') }}',
-                    dataSrc: 'data'
+                    url: '{{ path('datatables_bdd_data_driver') }}',
+                    dataSrc: 'dataDriver'
+                }
+            });
+            $('#car').DataTable({
+                ajax: {
+                    url: '{{ path('datatables_bdd_data_car') }}',
+                    dataSrc: 'dataCar'
                 }
             });
         });

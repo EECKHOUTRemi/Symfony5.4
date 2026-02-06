@@ -2,9 +2,12 @@
 
 namespace App\Controller\DataTables;
 
+use App\Entity\Cars;
 use App\Entity\Driver;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Handler\DataTables\DatatablesCarHandler;
+use App\Handler\DataTables\DatatablesDriverHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -13,6 +16,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 * @IsGranted("ROLE_USER")
 */
 class DataTablesController extends AbstractController{
+
+    /** @var DatatablesDriverHandler */
+    private $datatablesDriverHandler;
+
+    /** @var DatatablesCarHandler */
+    private $datatablesCarHandler;
+
+    public function __construct(
+        DatatablesDriverHandler $datatablesDriverHandler,
+        DatatablesDriverHandler $datatablesCarHandler
+    )
+    {
+        $this->datatablesDriverHandler = $datatablesDriverHandler;
+        $this->datatablesCarHandler = $datatablesCarHandler;
+    }
 
     /**
     * @Route("/array", name="array")
@@ -43,30 +61,22 @@ class DataTablesController extends AbstractController{
     }
     
     /**
-    * @Route("/bdd/data", name="bdd_data")
+    * @Route("/bdd/dataDriver", name="bdd_data_driver")
     */
-    public function bddData(EntityManagerInterface $em){
+    public function bddDataDriver(EntityManagerInterface $em){
 
-        $drivers = $em->getRepository(Driver::class)->findAll();
-        $data = [];
-
-        foreach($drivers as $driver){
-            $car = $driver->getCar();
-
-            array_push(
-                $data,
-                [
-                    $driver->getLastname(),
-                    $driver->getFirstname(),
-                    $driver->getAge(),
-                    $driver->getEmail(),
-                    ($car ? $car->getBrand() : null),
-                    ($car ? $car->getModel() : null),
-                    ($car ? $car->getHorsepower() : null)
-                ]
-            );            
-        }
+        $dataDriver = $this->datatablesDriverHandler->handle();
         
-        return $this->json(['data' => $data]);
+        return $this->json(['dataDriver' => $dataDriver]);
+    }
+    
+    /**
+     * @Route("/bdd/dataCar", name="bdd_data_car")
+     */
+    public function bddDataCar(EntityManagerInterface $em){
+        
+        $dataCar = $this->datatablesCarHandler->handle();
+
+        return $this->json(['dataCar' => $dataCar]);
     }
 }
