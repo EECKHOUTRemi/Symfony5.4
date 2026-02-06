@@ -2,30 +2,36 @@
 
 namespace App\Handler\DataTables;
 
-class DatatablesCarHandler{
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Cars;
 
-    public function handle(){
-        $cars = $em->getRepository(Cars::class)->findAll();
-        $data = [];
+class DatatablesCarHandler
+{
+    /** @var EntityManagerInterface */
+    private $em;
+    
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+    
+    public function handle()
+    {
+        $cars = $this->em->getRepository(Cars::class)->findAll();
+        $dataCar = [];
 
         foreach($cars as $car){
             $driver = $car->getDriver();
 
-            array_push(
-                $data,
-                [
-                    $car->getId(),
-                    $car->getBrand(),
-                    $car->getModel(),
-                    $car->getHorsepower(),
-                    $driver->getLastname(),
-                    $driver->getFirstname(),
-                    $driver->getAge(),
-                    $driver->getEmail()
-                ]
-            );            
+            $dataCar[] = [
+                "id" => $car->getId(),
+                "brand" => $car->getBrand(),
+                "model" => $car->getModel(),
+                "horsepower" => $car->getHorsepower(),
+                "name" => $driver ? ($driver->getLastname() . ' ' . $driver->getFirstname()) : ''
+            ];           
         }
 
-        return $data;
+        return $dataCar;
     }
 }

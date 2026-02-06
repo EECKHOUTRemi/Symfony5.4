@@ -15,25 +15,20 @@ class DatatablesDriverHandler{
 
     public function handle(){
         $drivers = $this->readDriverHandler->handle();
-        $data = [];
+        $dataDriver = [];
 
         foreach($drivers as $driver){
             $car = $driver->getCar();
-
-            array_push(
-                $data,
-                [
-                    $driver->getId(),
-                    $driver->getLastname(),
-                    $driver->getFirstname(),
-                    $driver->getAge(),
-                    $driver->getEmail(),
-                    ($car ? $car->getBrand() : null),
-                    ($car ? $car->getModel() : null),
-                    ($car ? $car->getHorsepower() : null)
-                ]
-            );            
+            
+            array_push($dataDriver, [
+                "id" => $driver->getId(),
+                "lastname" => $driver->getLastname(),
+                "firstname" => $driver->getFirstname(),
+                "age" => $driver->getAge(),
+                "email" => $driver->getEmail(),
+                "car" => ($car ? $car->getBrand() . ' ' . $car->getModel() : null)
+            ]);            
         }
-        return $data;
+        return $dataDriver;
     }
 }

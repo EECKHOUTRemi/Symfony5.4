@@ -10,9 +10,7 @@
                     <th>Prénom</th>
                     <th>Age</th>
                     <th>Mail</th>
-                    <th>Marque de la voiture</th>
-                    <th>Modèle de la voiture</th>
-                    <th>Puissance de la voiture</th>
+                    <th>Voiture</th>
                 </tr>
             </thead>
         </table>
@@ -23,10 +21,7 @@
                     <th>Marque de la voiture</th>
                     <th>Modèle de la voiture</th>
                     <th>Puissance de la voiture</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Age</th>
-                    <th>Mail</th>
+                    <th>Conducteur</th>
                 </tr>
             </thead>
         </table>
@@ -40,13 +35,29 @@
                 ajax: {
                     url: '{{ path('datatables_bdd_data_driver') }}',
                     dataSrc: 'dataDriver'
-                }
+                },
+                columns: [
+                    { data: 'id' },
+                    { data: 'lastname' },
+                    { data: 'firstname' },
+                    { data: 'age' },
+                    { data: 'email' },
+                    { data: 'car' }
+                ]
             });
+
             $('#car').DataTable({
                 ajax: {
                     url: '{{ path('datatables_bdd_data_car') }}',
                     dataSrc: 'dataCar'
-                }
+                },
+                columns: [
+                    { data: 'id' },
+                    { data: 'brand' },
+                    { data: 'model' },
+                    { data: 'horsepower' },
+                    { data: 'name' }
+                ]
             });
         });
     </script>

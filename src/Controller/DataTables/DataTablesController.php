@@ -25,7 +25,7 @@ class DataTablesController extends AbstractController{
 
     public function __construct(
         DatatablesDriverHandler $datatablesDriverHandler,
-        DatatablesDriverHandler $datatablesCarHandler
+        DatatablesCarHandler $datatablesCarHandler
     )
     {
         $this->datatablesDriverHandler = $datatablesDriverHandler;
