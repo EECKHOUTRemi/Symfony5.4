@@ -1,2 +1,31 @@
 {% extends "base.html.twig" %}
 
+{% block body %}
+    <div class="container mt-4">
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Mail</th>
+                    <th>Marque de la voiture</th>
+                    <th>Modèle de la voiture</th>
+                    <th>Puissance de la voiture</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                ajax: {
+                    url: '{{ path('datatables_bdd_data') }}',
+                    dataSrc: 'data'
+                }
+            });
+        });
+    </script>
+{% endblock %}

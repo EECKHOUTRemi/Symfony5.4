@@ -78,7 +78,7 @@ class CRUDController extends AbstractController{
         $driver = $result[0];
         $car = $result[1];
 
-        dd($driver, $car);
+        return $this->redirectToRoute('datatables_bdd');
     }
 
     /**
@@ -88,7 +88,7 @@ class CRUDController extends AbstractController{
     public function update(int $driverId) {
         $driver = $this->updateDriversLastname->handle($driverId);
 
-        dd($driver);
+        return $this->redirectToRoute('datatables_bdd');
     }
 
     /**
@@ -101,7 +101,7 @@ class CRUDController extends AbstractController{
         $driver = $result[0];
         $car = $result[1];
 
-        dd($driver, $car);
+        return $this->redirectToRoute('datatables_bdd');
     }
 
     /**
@@ -111,7 +111,7 @@ class CRUDController extends AbstractController{
     public function deleteDriver(int $driverId) : Response {
         $driver = $this->DeleteDriverHandler->handle($driverId);
 
-        dd($driver);
+        return $this->redirectToRoute('datatables_bdd');
     }
 
     /**
@@ -121,6 +121,6 @@ class CRUDController extends AbstractController{
     public function deleteCar(int $carId) : Response {
         $car = $this->deleteCarHandler->handle($carId);
 
-        dd($car);
+        return $this->redirectToRoute('datatables_bdd');
     }
 }

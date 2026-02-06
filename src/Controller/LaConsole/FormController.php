@@ -40,7 +40,7 @@ class FormController extends AbstractController{
         
         if ($form->isSubmitted() && $form->isValid()) {
             $this->createDriverHandler->handle($driver);
-            return $this->redirectToRoute('crud_read');
+            return $this->redirectToRoute('datatables_bdd');
         }
         
         return $this->render('forms/createDriver.html.twig', [
@@ -60,7 +60,7 @@ class FormController extends AbstractController{
         
         if ($form->isSubmitted() && $form->isValid()) {
             $handler->handle($car);
-            return $this->redirectToRoute('crud_read');
+            return $this->redirectToRoute('datatables_bdd');
         }
         
         return $this->render('forms/updateDriversCar.html.twig', [
